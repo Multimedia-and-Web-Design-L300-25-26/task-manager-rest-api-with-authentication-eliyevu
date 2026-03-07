@@ -34,7 +34,7 @@ export const deleteTask = async (req, res) => {
         if(task.owner.toString() !== req.user._id.toString()) {
             return res.status(403).json({ message: "Unauthorized" });
         }
-        await task.remove();
+        await task.deleteOne();
         res.status(200).json({ message: "Task deleted successfully" });
     } catch (error) {
         res.status(500).json({ message: "Failed to delete task", error });
